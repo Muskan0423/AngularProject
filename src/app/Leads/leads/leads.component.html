@@ -1,0 +1,93 @@
+<div class="container mx-auto p-4">
+    <!-- Top Filters and Actions Section -->
+    <div class="flex justify-between items-center mb-4">
+      <!-- Lead Stages -->
+      <div class="flex space-x-2">
+        <button class="btn btn-primary">ALL</button>
+        <button class="btn">Today My Assigned</button>
+        <button class="btn" (click)="fetchFavoriteLeads()">My Favourites</button>
+        <button class="btn">CSL</button>
+        <button class="btn">CLL</button>
+        <button class="btn">Unverified</button>
+        <button class="btn">Untouched</button>
+        <button class="btn">Re-Enquired</button>
+        <button class="btn">Call Back Later Stage</button>
+        <button class="btn">Not Interested Stage</button>
+      </div>
+      <!-- Leads Count -->
+      <div>
+        <span class="text-gray-500">Total Leads: <strong>{{ totalLeads }}</strong></span>
+      </div>
+    </div>
+  
+    <!-- My Followups Section -->
+    <div class="flex justify-between items-center mb-4">
+      <div class="flex space-x-2">
+        <button class="btn">Today</button>
+        <button class="btn">Done</button>
+        <button class="btn">Missed</button>
+        <button class="btn">Upcoming</button>
+      </div>
+      <div>
+        <button class="btn">Filter</button>
+        <button class="btn">Sorting: Latest</button>
+        <button class="btn">Quick View: System default view</button>
+        <button class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  
+    <!-- Search and Actions Section -->
+    <div class="flex justify-between items-center mb-4">
+      <div class="flex items-center space-x-2">
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Search by Name/Email/Phone/Alt Phone" class="form-input">
+        <button class="btn btn-primary" (click)="searchLeads()">Search</button>
+      </div>
+      <div class="flex items-center space-x-2">
+        <button class="btn">Add New Lead</button>
+        <button class="btn">Get USP</button>
+        <button class="btn btn-primary">Download CSV</button>
+      </div>
+    </div>
+  
+    <!-- Table Section -->
+    <table class="table-auto w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="p-2 border">Lead ID</th>
+          <th class="p-2 border">Prospect Name</th>
+          <th class="p-2 border">Phone</th>
+          <th class="p-2 border">Email</th>
+          <th class="p-2 border">College</th>
+          <th class="p-2 border">Course</th>
+          <th class="p-2 border">Application Form</th>
+          <th class="p-2 border">Last Outgoing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lead of leads">
+          <td class="p-2 border">{{ lead.id }}</td>
+          <td class="p-2 border">{{ lead.name }}</td>
+          <td class="p-2 border">{{ lead.phone }}</td>
+          <td class="p-2 border">{{ lead.email }}</td>
+          <td class="p-2 border">{{ lead.college }}</td>
+          <td class="p-2 border">{{ lead.course }}</td>
+          <td class="p-2 border">{{ lead.applicationForm }}</td>
+          <td class="p-2 border">N/A</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Pagination -->
+   <!-- Pagination -->
+<div class="flex justify-end mt-4">
+  <button class="btn" (click)="changePage(pageNo - 1)">Previous</button>
+  <div class="flex space-x-1">
+    <button class="btn" (click)="changePage(page)" *ngFor="let page of [].constructor(totalPages); let i = index">
+      {{ i + 1 }}
+    </button>
+  </div>
+  <button class="btn" (click)="changePage(pageNo + 1)">Next</button>
+</div>
+
+  </div>
+  
